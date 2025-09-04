@@ -3,6 +3,9 @@ import Hero from './components/Hero';
 import Steps from './components/Steps';
 import PartnersMarquee from './components/PartnersMarquee';
 import Mentors from './components/Mentors';
+import WallOfLove from './components/WallOfLove';
+import GalleryCarousel from './components/GalleryCarousel';
+import FAQ from './components/FAQ';
 import StatsCTA from './components/StatsCTA';
 
 export default function App() {
@@ -12,6 +15,9 @@ export default function App() {
       <Steps />
       <PartnersMarquee />
       <Mentors />
+      <WallOfLove />
+      <GalleryCarousel />
+      <FAQ />
       <StatsCTA />
       <footer className="py-10 text-center text-sm text-white/60">
         © {new Date().getFullYear()} AlgoUniversity · Hiring Tournament
