@@ -1,4 +1,5 @@
 import React from 'react';
+import { Mic, Video, Users, MessageSquare, Share, Circle, Smile, PhoneOff } from 'lucide-react';
 
 const steps = [
   {
@@ -7,23 +8,44 @@ const steps = [
     byline: 'Legendary Manas Kumar Verma',
     desc: 'Kick off with an immersive live class on a carefully chosen secret topic that top companies love. High-signal, interview-ready content only.',
     mockup: (
-      <div className="bg-[#0f0f16] border-2 border-black rounded-xl shadow-[8px_8px_0_#7c3aed] overflow-hidden">
-        <div className="flex items-center gap-2 px-4 py-2 bg-[#1c1c27] border-b-2 border-black">
-          <span className="h-3 w-3 rounded-full bg-red-500" />
-          <span className="h-3 w-3 rounded-full bg-yellow-500" />
-          <span className="h-3 w-3 rounded-full bg-emerald-500" />
-          <span className="ml-3 text-xs text-white/70">Live: Secret DS/Algo</span>
+      <div className="bg-[#0f0f16] border-2 border-black rounded-2xl shadow-[10px_10px_0_#7c3aed] overflow-hidden">
+        {/* Zoom-like top bar */}
+        <div className="px-4 py-2 bg-[#151523] border-b-2 border-black flex items-center justify-between">
+          <div className="flex items-center gap-3 text-xs">
+            <span className="inline-flex items-center gap-1 px-2 py-1 rounded bg-red-500 text-black font-bold border-2 border-black">LIVE</span>
+            <span className="text-white/80">AlgoU Live — Secret Topic</span>
+          </div>
+          <div className="text-xs bg-white text-black px-2 py-1 rounded border-2 border-black">00:45:12</div>
         </div>
-        <div className="p-4 font-mono text-sm leading-relaxed text-white/90">
-          <pre className="whitespace-pre-wrap">{`// Manas Kumar Verma — Live Code Walkthrough
-// Topic: Advanced Graph Primitives (revealed live)
 
-function solveTournament(input) {
-  // techniques: bitset BFS, 0-1 Dijkstra, DSU by size, centroiding
-  // ...snip — live coding, tricks, patterns, pitfalls
-}
+        {/* Video grid */}
+        <div className="p-3 grid grid-cols-3 sm:grid-cols-3 gap-3">
+          {["Manas","Priya","Arjun","Nisha","Karthik","You"].map((n,i)=> (
+            <div key={i} className="relative aspect-video bg-[#0b0b10] border-2 border-black rounded-xl overflow-hidden">
+              <img src={`https://i.pravatar.cc/400?img=${i+12}`} alt={n} className="w-full h-full object-cover opacity-80" />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent" />
+              <div className="absolute bottom-1 left-1 right-1 flex items-center justify-between">
+                <div className="text-[11px] font-bold bg-white text-black px-2 py-0.5 rounded border-2 border-black">{n}{n==='Manas'?' · Speaker':''}</div>
+                {n==='Manas' && <div className="text-[10px] bg-emerald-400 text-black font-bold px-1.5 py-0.5 rounded border-2 border-black">HD</div>}
+              </div>
+            </div>
+          ))}
+        </div>
 
-// Q&A, live debugging, and cheat-sheets included`}</pre>
+        {/* Bottom controls */}
+        <div className="px-4 py-3 bg-[#151523] border-t-2 border-black flex items-center justify-between">
+          <div className="flex items-center gap-3">
+            <Control icon={<Mic className="h-4 w-4"/>} label="Mute" />
+            <Control icon={<Video className="h-4 w-4"/>} label="Video" />
+            <Control icon={<Users className="h-4 w-4"/>} label="Participants" />
+            <Control icon={<MessageSquare className="h-4 w-4"/>} label="Chat" />
+            <Control icon={<Share className="h-4 w-4"/>} label="Share" />
+            <Control icon={<Circle className="h-4 w-4"/>} label="Record" />
+            <Control icon={<Smile className="h-4 w-4"/>} label="Reactions" />
+          </div>
+          <button className="inline-flex items-center gap-2 bg-red-500 text-black font-bold px-3 py-2 rounded-lg border-2 border-black shadow-[4px_4px_0_#7c3aed]">
+            <PhoneOff className="h-4 w-4"/> Leave
+          </button>
         </div>
       </div>
     ),
@@ -98,6 +120,15 @@ function solveTournament(input) {
     ),
   },
 ];
+
+function Control({ icon, label }) {
+  return (
+    <div className="inline-flex items-center gap-1.5 bg-[#0f0f16] text-white px-3 py-1.5 rounded-lg border-2 border-black text-xs">
+      {icon}
+      <span>{label}</span>
+    </div>
+  );
+}
 
 export default function Steps() {
   return (
